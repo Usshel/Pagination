@@ -11,4 +11,12 @@ export class ProductService {
   getAllSort(sort: string): Observable<ProductModel[]> {
     return this._httpClient.get<ProductModel[]>(`https://fakestoreapi.com/products?sort=${sort}`);
   }
+
+  getAllCategories(): Observable<string[]> {
+    return this._httpClient.get<string[]>('https://fakestoreapi.com/products/categories')
+  }
+
+  getAllProductsByCategory(category: string): Observable<ProductModel[]> {
+    return this._httpClient.get<ProductModel[]>('https://fakestoreapi.com/products/category/'+ category);
+  }
 }
