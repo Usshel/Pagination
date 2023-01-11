@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title>Sort by</mat-card-title>
+    <mat-card-content>
+        <mat-selection-list role="list" [multiple]="false">
+            <mat-list-option role="listitem"
+             *ngFor="let item of directions$ | async"
+             [value]="item"
+             (click)="onSortSelected(item)"
+             >{{item}}</mat-list-option>
+        </mat-selection-list>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title>List of products</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list"><mat-list-item role="listitem" *ngFor="let item of productList$ | async">id:{{item.id}} {{item.title}} {{item.price}}</mat-list-item></mat-list>
+    </mat-card-content>
+</mat-card>
