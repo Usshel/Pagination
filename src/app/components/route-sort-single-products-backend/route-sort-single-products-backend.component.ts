@@ -18,7 +18,7 @@ export class RouteSortSingleProductsBackendComponent {
     switchMap((sortDirection) => this._productService.getAllSort(sortDirection['sort']))
   );
  
-
+    //Is it just faster way of using a method which will change the router and would send a string to subject piped with productList?
  
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService, private _router: Router) {
