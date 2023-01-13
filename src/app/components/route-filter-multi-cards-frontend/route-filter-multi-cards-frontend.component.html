@@ -1,0 +1,56 @@
+<mat-card *ngIf="filterValues$ | async as filterValues">
+    <mat-card-title></mat-card-title>
+    <mat-card-content style="display: flex">
+        <h1>Brands</h1>
+        <mat-selection-list role="list">
+
+            <mat-list-option 
+            [selected]="filterValues.brands.has(item.id)"
+            role="listitem" 
+            *ngFor="let item of listBrands$ | async" 
+            (selectedChange)="onBrandSelected(item, $event)" 
+            [value]="item.id">
+            {{item.name}}</mat-list-option>
+
+        </mat-selection-list>
+
+        <h1>Comfort Features</h1>
+        <mat-selection-list role="list">
+
+            <mat-list-option 
+            [selected]="filterValues.comfortFeatures.has(item.id)"
+            role="listitem" 
+            *ngFor="let item of listComfortFeatures$ | async"
+             [value]="item.id"
+             (selectedChange)="onComfortFeatureChanged(item, $event)">
+             {{item.name}}
+            </mat-list-option>
+
+        </mat-selection-list>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title>List Cars </mat-card-title>
+    <mat-card-content>
+         <ng-container *ngIf="listCars$ | async as list">
+      <table mat-table [dataSource]="list" class="mat-elevation-z8">         <!-- Column 1 -->
+        <ng-container matColumnDef="Model">
+          <th mat-header-cell *matHeaderCellDef> Model </th>
+          <td mat-cell *matCellDef="let element"> {{ element.model }} </td>
+        </ng-container>
+        <!-- Column 2 -->
+        <ng-container matColumnDef="Brand">
+          <th mat-header-cell *matHeaderCellDef> Brand </th>
+          <td mat-cell *matCellDef="let element"> {{element.brandId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="comfortfeatures">
+            <th mat-header-cell *matHeaderCellDef> comfortfeatures </th>
+            <td mat-cell *matCellDef="let element"> {{element.comfortFeatureIds}} </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['Model', 'Brand', 'comfortfeatures']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['Model', 'Brand', 'comfortfeatures'];"></tr>  
+      </table>
+    </ng-container>
+    </mat-card-content>
+</mat-card>
