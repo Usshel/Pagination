@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <mat-card-content>
+
+
+        <mat-selection-list role="list" fxLayout="row" [multiple]="false" style="display: flex">
+            <mat-list-option role="listitem" *ngFor="let item of pageSize | async">{{item}}</mat-list-option>
+        </mat-selection-list>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title>Cities</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let item of listCities$ | async">{{item.name}}</mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
