@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <mat-card-content *ngIf="pageData$ | async as pageData">
+    
+        <mat-selection-list 
+        role="list"
+        [multiple]="false"
+        fxLayout="row" 
+        style="display: flex;"
+        (selectionChange)="onPageChanged($event)">
+
+            <mat-list-option
+            role="listitem" 
+            *ngFor="let item of pages$ | async"
+            [value]="item"
+            [selected]="item === pageData.pageNumber"
+            >{{item}}</mat-list-option>
+        </mat-selection-list> 
+        
+        <mat-selection-list 
+        role="list"
+        [multiple]="false"
+        fxLayout="row" 
+        style="display: flex;"
+        (selectionChange)="onPageSizeChanged($event)">
+            <mat-list-option 
+            role="listitem" 
+            [value]="item"
+            [selected]="item === pageData.pageSize"
+            *ngFor="let item of pageSizes | async"
+            >{{item}}</mat-list-option>
+        </mat-selection-list>
+        
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title>Cities</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let item of CitiesOnPage$ | async">{{item.name}}</mat-list-item></mat-list>
+    </mat-card-content>
+</mat-card>
